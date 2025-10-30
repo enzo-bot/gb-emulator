@@ -11,7 +11,12 @@ dotnet run
 Ensure you have the C# Dev Kit extension installed.
 
 ```bash
-dotnet build \Emulator.Tests\Emulator.Tests.csproj
+dotnet test
+```
+OR
+```bash
+dotnet build Emulator.sln
+dotnet test
 ```
 
 Once you built it, you can find your tests in the Testing explorer to build and run them again.
