@@ -1,3 +1,5 @@
+using Execution;
+
 namespace Emulator.Tests;
 
 public class InstructionsTests
@@ -94,7 +96,7 @@ public class InstructionsTests
         _inst.ADD8(_regs.B, 1, 1);
         Assert.That(_regs.A, Is.EqualTo(28));
     }
-    
+
     [Test]
     public void ADD8memHLTest()
     {
@@ -155,7 +157,7 @@ public class InstructionsTests
         _inst.ADD16(_regs.BC, 1, 1);
         Assert.That(_regs.HL, Is.EqualTo(42000));
     }
-    
+
     [Test]
     public void ADD16SPTest()
     {

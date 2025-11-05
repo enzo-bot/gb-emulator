@@ -1,4 +1,6 @@
-﻿namespace Emulator.Tests;
+﻿using Execution;
+
+namespace Emulator.Tests;
 
 public class RegistersTests
 {
