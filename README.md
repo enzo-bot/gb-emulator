@@ -20,3 +20,5 @@ dotnet test
 ```
 
 Once you built it, you can find your tests in the Testing explorer to build and run them again.
+
+Use https://docs.nunit.org/articles/nunit/writing-tests/constraints/Constraints.html to create assertions.

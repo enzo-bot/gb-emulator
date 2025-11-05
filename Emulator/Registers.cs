@@ -1,3 +1,6 @@
+/// <summary>
+/// Class <c>Registers</c> models the registers set of the SM83 processor.
+/// </summary>
 public class Registers
 {
     private Register _af;
@@ -7,92 +10,157 @@ public class Registers
     private Register _sp;
     private Register _pc;
 
+    /// <summary>
+    /// Property <c>AF</c> is the AF register.
+    /// </summary>
     public ushort AF
-    { 
-        get { return _af.RegisterValue; } 
-        set { _af.RegisterValue = value; }
+    {
+        get { return _af.Value; }
+        set { _af.Value = value; }
     }
+
+    /// <summary>
+    /// Property <c>BC</c> is the BC register.
+    /// </summary>
     public ushort BC
-    { 
-        get { return _bc.RegisterValue; } 
-        set { _bc.RegisterValue = value; }
+    {
+        get { return _bc.Value; }
+        set { _bc.Value = value; }
     }
+
+    /// <summary>
+    /// Property <c>DE</c> is the DE register.
+    /// </summary>
     public ushort DE
-    { 
-        get { return _de.RegisterValue; } 
-        set { _de.RegisterValue = value; }
+    {
+        get { return _de.Value; }
+        set { _de.Value = value; }
     }
+
+    /// <summary>
+    /// Property <c>HL</c> is the HL register.
+    /// </summary>
     public ushort HL
-    { 
-        get { return _hl.RegisterValue; } 
-        set { _hl.RegisterValue = value; }
+    {
+        get { return _hl.Value; }
+        set { _hl.Value = value; }
     }
+
+    /// <summary>
+    /// Property <c>SP</c> is the SP register.
+    /// </summary>
     public ushort SP
-    { 
-        get { return _sp.RegisterValue; } 
-        set { _sp.RegisterValue = value; }
+    {
+        get { return _sp.Value; }
+        set { _sp.Value = value; }
     }
+
+    /// <summary>
+    /// Property <c>PC</c> is the PC register.
+    /// </summary>
     public ushort PC
-    { 
-        get { return _pc.RegisterValue; } 
-        set { _pc.RegisterValue = value; }
+    {
+        get { return _pc.Value; }
+        set { _pc.Value = value; }
     }
 
-    public ushort A
+    /// <summary>
+    /// Property <c>A</c> is the low part of the AF register.
+    /// </summary>
+    public byte A
     {
-        get{ return _af.Hi; }
-        set{ _af.Hi = value; }
-    }
-    public ushort B
-    {
-        get{ return _bc.Hi; }
-        set{ _bc.Hi = value; }
-    }
-    public ushort C
-    {
-        get{ return _bc.Lo; }
-        set{ _bc.Lo = value; }
-    }
-    public ushort D
-    {
-        get{ return _de.Hi; }
-        set{ _de.Hi = value; }
-    }
-    public ushort E
-    {
-        get{ return _de.Lo; }
-        set{ _de.Lo = value; }
-    }
-    public ushort H
-    {
-        get{ return _hl.Hi; }
-        set{ _hl.Hi = value; }
-    }
-    public ushort L
-    {
-        get{ return _hl.Lo; }
-        set{ _hl.Lo = value; }
+        get { return _af.Hi; }
+        set { _af.Hi = value; }
     }
 
-    public ushort FZ
+    /// <summary>
+    /// Property <c>B</c> is the low part of the BC register.
+    /// </summary>
+    public byte B
     {
-        get{ return (ushort)(_af.Lo >> 7); }
-        set{ _af.Lo = (ushort)(_af.Lo ^ (value << 7)); }
+        get { return _bc.Hi; }
+        set { _bc.Hi = value; }
     }
-    public ushort FN
+
+    /// <summary>
+    /// Property <c>C</c> is the low part of the BC register.
+    /// </summary>
+    public byte C
     {
-        get{ return (ushort)((_af.Lo & 0b_0000_0000_0100_0000) >> 6); }
-        set{ _af.Lo = (ushort)(_af.Lo ^ (value << 6)); }
+        get { return _bc.Lo; }
+        set { _bc.Lo = value; }
     }
-    public ushort FH
+
+    /// <summary>
+    /// Property <c>D</c> is the low part of the DE register.
+    /// </summary>
+    public byte D
     {
-        get{ return (ushort)((_af.Lo & 0b_0000_0000_0010_0000) >> 5); }
-        set{ _af.Lo = (ushort)(_af.Lo ^ (value << 5)); }
+        get { return _de.Hi; }
+        set { _de.Hi = value; }
     }
-    public ushort FC
+
+    /// <summary>
+    /// Property <c>E</c> is the low part of the DE register.
+    /// </summary>
+    public byte E
     {
-        get{ return (ushort)((_af.Lo & 0b_0000_0000_0001_0000) >> 4); }
-        set{ _af.Lo = (ushort)(_af.Lo ^ (value << 4)); }
+        get { return _de.Lo; }
+        set { _de.Lo = value; }
+    }
+
+    /// <summary>
+    /// Property <c>H</c> is the low part of the HL register.
+    /// </summary>
+    public byte H
+    {
+        get { return _hl.Hi; }
+        set { _hl.Hi = value; }
+    }
+
+    /// <summary>
+    /// Property <c>L</c> is the low part of the HL register.
+    /// </summary>
+    public byte L
+    {
+        get { return _hl.Lo; }
+        set { _hl.Lo = value; }
+    }
+
+    /// <summary>
+    /// Property <c>FZ</c> is the Zero flag.
+    /// </summary>
+    public byte FZ
+    {
+        get { return (byte)(_af.Lo >> 7); }
+        set { _af.Lo = (byte)(_af.Lo ^ (value << 7)); }
+    }
+
+    /// <summary>
+    /// Property <c>FN</c> is the Subtraction flag.
+    /// </summary>
+    public byte FN
+    {
+        get { return (byte)((_af.Lo & 0b_0100_0000) >> 6); }
+        set { _af.Lo = (byte)(_af.Lo ^ (value << 6)); }
+    }
+
+    /// <summary>
+    /// Property <c>FH</c> is the Half Carry flag.
+    /// </summary>
+    public byte FH
+    {
+        get { return (byte)((_af.Lo & 0b_0010_0000) >> 5); }
+        set { _af.Lo = (byte)(_af.Lo ^ (value << 5)); }
+    }
+
+    /// <summary>
+    /// Property <c>FC</c> is the Carry flag.
+    /// </summary>
+    public byte FC
+    {
+        get { return (byte)((_af.Lo & 0b_0001_0000) >> 4); }
+        set { _af.Lo = (byte)(_af.Lo ^ (value << 4)); }
     }
 
     private static Registers? _instance;
@@ -108,6 +176,12 @@ public class Registers
         _pc = new Register();
     }
 
+    /// <summary>
+    /// Method <c>getInstance</c> creates a single instance of the Registers Class.
+    /// </summary>
+    /// <returns>
+    /// The instance of the Registers Class.
+    /// </returns>
     public static Registers getInstance()
     {
         if (_instance == null)

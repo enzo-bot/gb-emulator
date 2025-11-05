@@ -1,16 +1,43 @@
+/// <summary>
+/// Class <c>Register</c> models a 16-bits register from the SM83 processor.
+/// </summary>
 public class Register
 {
-    public ushort RegisterValue { get; set; }
+    private (byte hi, byte lo) _value;
 
-    public ushort Hi
+    /// <summary>
+    /// Property <c>Value</c> is the 16-bits value of the register.
+    /// </summary>
+    public ushort Value
     {
-        get { return (ushort)(RegisterValue & 0b_1111_1111_0000_0000); }
-        set { RegisterValue = (ushort)((value << 8) ^ Lo); }
+        get
+        {
+            ushort tmp = (ushort)(((ushort)_value.hi) << 8);
+            tmp += (ushort)_value.lo;
+            return tmp;
+        }
+        set
+        {
+            _value.lo = (byte)value;
+            _value.hi = (byte)(value >> 8);
+        }
     }
 
-    public ushort Lo
+    /// <summary>
+    /// Property <c>Lo</c> is the 8-bits low value of the register.
+    /// </summary>
+    public byte Lo
     {
-        get { return (ushort)(RegisterValue & 0b_0000_0000_1111_1111); }
-        set { RegisterValue = (ushort)(Hi ^ value); }
+        get { return _value.lo; }
+        set { _value.lo = value; }
+    }
+
+    /// <summary>
+    /// Property <c>Hi</c> is the 8-bits high value of the register.
+    /// </summary>
+    public byte Hi
+    {
+        get { return _value.hi; }
+        set { _value.hi = value; }
     }
 }
