@@ -175,7 +175,6 @@ namespace Cpu
             _hl = new Register();
             _sp = new Register();
             _pc = new Register();
-
             Decoder.Decode();
         }
 
@@ -185,7 +184,7 @@ namespace Cpu
         /// <returns>
         /// The instance of the Registers Class.
         /// </returns>
-        public static Cpu getInstance()
+        public static Cpu GetInstance()
         {
             if (_instance == null)
             {
@@ -198,6 +197,11 @@ namespace Cpu
                 }
             }
             return _instance;
+        }
+
+        public static void IncrementPC()
+        {
+            this.PC++;
         }
     }
 }

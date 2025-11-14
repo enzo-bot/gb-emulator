@@ -1,1 +1,9 @@
-﻿Console.WriteLine("Hello World !");
+﻿namespace Emulator;
+
+class Program
+{
+    static void Main()
+    {
+        var bus = new MemoryBus();
+    }
+}
